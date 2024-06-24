@@ -283,13 +283,13 @@ Use `"include"` field just to copy an existing code block.
 
 ````
 
-```html!sandpack {"include": "app.html", "name": "app-with-incude.html"}
+```html!sandpack {"include": "app.html", "name": "app-with-include.html"}
 
 ```
 
 ````
 
-```html!sandpack {"include": "app.html", "name": "app-with-incude.html"}
+```html!sandpack {"include": "app.html", "name": "app-with-include.html"}
 
 ```
 
@@ -330,11 +330,21 @@ console.log('b');
 
 You can `"include"`, or `"appendTo"` previous code sections, like we did in code blocks.
 
-```
+````
 <section data-code-section="{\"appendTo\":\"named-code-section\"}">
 
-</section>
+```js {"name": "index2.js"}
+// I have added some comment here
 ```
+
+```js {"name": "index3.js"}
+console.log('new file!');
+```
+
+</section>
+````
+
+gives merged result like the following:
 
 <section data-code-section="{\"appendTo\":\"named-code-section\",\"name\":\"section2\"}">
 
