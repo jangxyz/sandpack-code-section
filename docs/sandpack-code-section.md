@@ -1,8 +1,14 @@
-# Markdown file
+# Using sandpack inside markdown
+
+<footer>
+
+This document is at: https://jangxyz.github.io/sandpack-code-section/docs/sandpack-code-section.md
+
+</footer>
 
 <style>
   article {
-    min-height: auto;
+    min-height: 80vh;
 
     pre:has(> code) {
       outline: 1px solid #eee;
@@ -14,11 +20,19 @@
     }
   }
 
+  /* article with footer */
+  article:has(footer) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
   hr {
     margin-block: 1rem;
   }
-
 </style>
+
+---
 
 ## Code in markdown
 
@@ -107,8 +121,6 @@ You can wrap multiple code within a `<section>` tag to make it into a single gro
 </section>
 ````
 
-It is recommended to add `data-code-section` data attribute, where it can receive additional options (more on in later).
-
 <section data-code-section="multiple">
 
 ```html
@@ -138,6 +150,9 @@ button {
 ```
 
 </section>
+
+Although you can omit the `data-code-section` data attribute,
+it is recommended to add it in order to receive additional options (more on in later).
 
 ---
 
@@ -316,11 +331,9 @@ console.log('b');
 You can `"include"`, or `"appendTo"` previous code sections, like we did in code blocks.
 
 ```
-
 <section data-code-section="{\"appendTo\":\"named-code-section\"}">
 
 </section>
-
 ```
 
 <section data-code-section="{\"appendTo\":\"named-code-section\",\"name\":\"section2\"}">
@@ -348,10 +361,19 @@ Putting a full JSON format inside the attribute string can be a headache, so her
 When you want to...
 
 - _name_ it: pass in a string, e.g `<section data-code-section="section2">`
+
 - _refer_ it: prepend with either `appendTo:` or `include:`, e.g `<section data-code-section="appendTo:named-code-section`>" \
   You can also do `"name:section2"`, which is same as just providing "section2".
 
 - refer it, _and_ have a name: comma separated values are recognized, e.g `<section data-code-section="appendTo:named-code-section,name:section2">`
+
+The example from previous slide can be represented as:
+
+```html
+<section data-code-section="appendTo:named-code-section,name:section2">
+  ...
+</section>
+```
 
 NOTE since we use colons(`:`) and commans(`,`) as a special syntax, you cannot have them in a filename. \
 (for instance, `data-code-section="the_name:my_app"` won't work)
